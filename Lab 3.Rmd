@@ -31,7 +31,7 @@ HAPPY[HAPPY %in% "DK"] <- "NA"
 2. Variable Type
 
 ```{R}
-
+HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
 ```
 
 3. Order
