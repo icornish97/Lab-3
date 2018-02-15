@@ -18,3 +18,28 @@ head(happy)
 ```{r}
 HAPPY <- readRDS("data/HAPPY.rds")
 ```
+
+## Data Cleaning 
+
+1. Replacement 
+
+```{R}
+HAPPY[HAPPY %in% "IAP"] <- "NA"
+HAPPY[HAPPY %in% "DK"] <- "NA"
+```
+
+2. Variable Type
+
+```{R}
+
+```
+
+3. Order
+```{R}
+
+```
+
+
+```{r cars}
+summary(cars)
+```
