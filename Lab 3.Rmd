@@ -24,8 +24,7 @@ HAPPY <- readRDS("data/HAPPY.rds")
 1. Replacement 
 
 ```{R}
-HAPPY[HAPPY %in% "IAP"] <- "NA"
-HAPPY[HAPPY %in% "DK"] <- "NA"
+HAPPY <- HAPPY %>% mutate(DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA))
 ```
 
 2. Variable Type
