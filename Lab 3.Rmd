@@ -31,12 +31,12 @@ HAPPY <- HAPPY %>% mutate(DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IA
 
 ```{R}
 HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
-HAPPY <- HAPPY %>% mutate( DEGREE = factor(DEGREE, levels=c("LT HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE", "BACHELOR", "GRADUATE")))
 ```
 
 3. Order
 ```{R}
-
+HAPPY <- HAPPY %>% mutate( DEGREE = factor(DEGREE, levels=c("LT HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE", "BACHELOR", "GRADUATE")))
+HAPPY <- HAPPY %>% mutate( HAPPY = factor(HAPPY, levels=c("NOT TOO HAPPY", "PRETTY HAPPY", "VERY HAPPY")))
 ```
 
 
