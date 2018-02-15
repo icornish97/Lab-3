@@ -10,8 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-install.packages("productplots")
+#install.packages("productplots")
 data(happy, package = "productplots")
 head(happy)
+```
 
+```{r}
+HAPPY <- readRDS("data/HAPPY.rds")
 ```
