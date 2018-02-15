@@ -10,3 +10,35 @@ output: html_document
 data(happy, package="productplots")
 head(happy)
 ```
+
+```{r}
+HAPPY <- readRDS('data/HAPPY.rds')
+```
+### cleaing data 
+
+```{r}
+suppressMessages(library(tidyverse))
+HAPPY <- HAPPY %>% mutate(DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA))
+```
+
+```{r}
+HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
+HAPPY <- HAPPY %>% mutate( DEGREE = factor(DEGREE, 
+                                           levels=c("LT HIGH SCHOOL", 
+                                                            "HIGH SCHOOL", 
+                                                            "JUNIOR COLLEGE",
+                                                            "BACHELOR", "GRADUATE")))
+
+```
+```{r}
+str(HAPPY)
+```
+
+```{r}
+columns_to_factor <- c("YEAR","MARITAL","SEX","HEALTH")
+HAPPY2 <- HAPPY %>%
+            mutate_each_(funs(factor(.)),columns_to_factor)
+```
+```{r}
+str(HAPPY2)
+```
