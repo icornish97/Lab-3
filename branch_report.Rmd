@@ -1,0 +1,186 @@
+
+
+#Lab 3
+###2/15/2018
+
+```{r echo=FALSE}
+# File is not complete. The professor stated that it was not necessary to complete this lab. Feel free to edit.
+# Everything is commented because I was getting err when trying to install the package
+
+
+```
+
+Contributors: Cecilia Millane, Ian Cornish, Isaac Tetteh, Rubėn Arias
+https://github.com/icornish97/Lab-3
+
+
+Outline
+
+   - Find your team members
+   
+   - Create a repository (one per team) & give access to everybody
+   
+   - Do a data exploration (on happiness)
+   
+   - Create an R markdown file that contains all code to read the data and 	create the plots
+   
+   - Submit!
+
+
+
+
+
+###Background
+
+The General Social Survey (GSS) has been run by NORC every other year since 1972 to keep track of current opinions across the United States.
+
+The package productplots contains a subset of this data, called happy.
+The subset is the following: 
+
+
+```{r echo=FALSE}
+library(tidyverse)
+
+#install.packages("productplots")
+#install.packages("productplots", repos = "https://github.com/hadley/productplots")
+devtools::install_github("hadley/productplots")
+
+data(happy, package="productplots")
+head(happy)
+
+```
+
+###Updating and cleaning data
+
+Unfortunately, the dataset ends in 2006. So today’s activity is all about updating the dataset to the data from 2016.
+
+The command < HAPPY <- readRDS("data/HAPPY.rds") > is going to load the data into your R session:
+
+
+```{r echo=FALSE}
+#library(tidyverse)
+
+#data(happy, package="productplots")
+
+#HAPPY <- readRDS("data/HAPPY.rds")
+#head(HAPPY)
+
+```
+
+
+##Part one (cleaning)
+```
+Answer each of the following questions using R code to get an answer. 
+Write a separate code chunk for each variable, once all the data manipulation is done, show the values in a barchart or histogram and comment on the plot. 
+```
+
+
+1. Data cleaning: the values “IAP”, “DK” and “NA” all encode missing values. Replace all of these instances by the value NA.
+
+
+```{r echo=FALSE}
+#library(tidyverse)
+
+#data(happy, package="productplots")
+
+#HAPPY <- readRDS("data/HAPPY.rds")
+
+#HAPPY <- HAPPY %>% mutate( DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA ))
+
+#head(HAPPY)
+
+```
+
+
+
+2. Check the type of the variable and cast into the right type (factor variable for categorical variables).
+
+	For age, change “89 OR OLDER” to 89 and assume the variable should be numeric.
+	
+	
+```{r echo=FALSE}
+#library(tidyverse)
+
+#data(happy, package="productplots")
+
+#HAPPY <- readRDS("data/HAPPY.rds")
+
+#HAPPY <- HAPPY %>% mutate( DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA ))
+
+#HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
+
+#head(HAPPY)
+
+```
+	
+	
+	
+
+3.  Bring all levels of factors into a sensible order. For marital you could e.g. order the levels according to average age.
+
+
+
+```{r echo=FALSE}
+#library(tidyverse)
+
+#data(happy, package="productplots")
+
+#HAPPY <- readRDS("data/HAPPY.rds")
+
+#HAPPY <- HAPPY %>% mutate( DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA ))
+
+#HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
+
+#head(HAPPY)
+
+```
+
+
+
+##Part two (exploration)
+
+#####Happiness!
+
+Investigate the relationship between happiness and two other variables in the data. Find a visualization that captures the relationship and write a paragraph to describe it.
+
+
+###Description
+
+
+```{r echo=FALSE}
+library(tidyverse)
+
+#data(happy, package="productplots")
+
+#HAPPY <- readRDS("data/HAPPY.rds")
+
+#HAPPY <- HAPPY %>% mutate( DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA ))
+
+
+#HAPPY %>% ggplot(aes(x= DEGREE))  + geom_bar() + coord_flip()
+
+
+```
+
+
+
+
+###Description
+
+
+```{r echo=FALSE}
+#library(tidyverse)
+
+#data(happy, package="productplots")
+
+#HAPPY <- readRDS("data/HAPPY.rds")
+
+#HAPPY <- HAPPY %>% mutate( DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA ))
+
+
+#HAPPY <- HAPPY %>% mutate( DEGREE = factor(DEGREE, levels=c ("LT  HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE", #"BACHELOR", "GRADUATE"))	)
+
+#HAPPY %>% ggplot(aes(x= DEGREE))  + geom_bar() + coord_flip()
+
+
+```
