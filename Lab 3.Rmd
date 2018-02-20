@@ -11,11 +11,9 @@ data(happy, package="productplots")
 head(happy)
 ```
 
-```{r}
-HAPPY <- readRDS('data/HAPPY.rds')
-```
-### cleaing data 
+### Data Cleaning
 
+<<<<<<< isaacdev
 ```{r}
 suppressMessages(library(tidyverse))
 HAPPY <- HAPPY %>% mutate(DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA))
@@ -42,3 +40,21 @@ HAPPY2 <- HAPPY %>%
 ```{r}
 str(HAPPY2)
 ```
+=======
+2. Variable Type
+
+```{R}
+HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
+```
+
+3. Order
+```{R}
+HAPPY <- HAPPY %>% mutate( DEGREE = factor(DEGREE, levels=c("LT HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE", "BACHELOR", "GRADUATE")))
+HAPPY <- HAPPY %>% mutate( HAPPY = factor(HAPPY, levels=c("NOT TOO HAPPY", "PRETTY HAPPY", "VERY HAPPY")))
+```
+
+
+```{r cars}
+summary(cars)
+```
+>>>>>>> master
