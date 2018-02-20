@@ -1,6 +1,10 @@
 ---
 title: "Lab 3"
-author: "Cecilia Millane"
+author: 
+- "Cecilia Millane"
+- "Isaac Tetteh"
+- "Cornish, Ian A"
+- "Arias-Azocar, Ruben A"
 date: "2/15/2018"
 output: html_document
 ---
@@ -12,7 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #install.packages("productplots")
 data(happy, package = "productplots")
-head(happy)
+library(dplyr)
+knitr::kable(head(happy))
 ```
 
 ```{r}
@@ -24,22 +29,33 @@ HAPPY <- readRDS("data/HAPPY.rds")
 1. Replacement 
 
 ```{R}
-HAPPY <- HAPPY %>% mutate(DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA))
+HAPPY <- HAPPY %>% mutate(DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA),
+                          HAPPY = replace(HAPPY, HAPPY %in% c("NA", "DK", "IAP"), NA),
+                          AGE = replace(AGE, AGE %in% c("NA", "DK", "IAP"), NA),
+                          MARITAL = replace(MARITAL, MARITAL %in% c("NA", "DK", "IAP"), NA),
+                          HEALTH = replace(HEALTH, HEALTH %in% c("NA", "DK", "IAP"), NA),
+                          FINRELA = replace(FINRELA, FINRELA %in% c("NA", "DK", "IAP"), NA))
+```
+Changed variable and set some categorical varialbe to factor and set levels
+
+```{r}
+HAPPY <- HAPPY %>% mutate(AGE = as.numeric(AGE),
+                          DEGREE = factor(DEGREE,
+                                          levels=c("LT HIGH SCHOOL", 
+                                                            "HIGH SCHOOL", 
+                                                            "JUNIOR COLLEGE",
+                                                            "BACHELOR", "GRADUATE")),
+                          SEX = factor(SEX, levels = c("MALE","FEMALE")),
+                          MARITAL = factor(MARITAL, levels = c("NEVER MARRIED","MARRIED","SEPARATED","DIVORCED","WIDOWED")),
+                          HEALTH = factor(HEALTH, levels = c("POOR","FAIR","GOOD","EXCELLENT")),
+                          FINRELA = factor(FINRELA, levels = c("AVERAGE","ABOVE AVERAGE")))
+                          
+```
+```{r}
+str(HAPPY)
 ```
 
-2. Variable Type
-
-```{R}
-HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
-```
-
-3. Order
-```{R}
-HAPPY <- HAPPY %>% mutate( DEGREE = factor(DEGREE, levels=c("LT HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE", "BACHELOR", "GRADUATE")))
-HAPPY <- HAPPY %>% mutate( HAPPY = factor(HAPPY, levels=c("NOT TOO HAPPY", "PRETTY HAPPY", "VERY HAPPY")))
-```
 
 
-```{r cars}
-summary(cars)
-```
+## [Link](https://github.com/icornish97/Lab-3) to github page.
+
