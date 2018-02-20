@@ -5,28 +5,42 @@ date: "2/15/2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r}
-#install.packages("productplots")
-data(happy, package = "productplots")
+#install.packages('productplots')
+data(happy, package="productplots")
 head(happy)
 ```
 
+### Data Cleaning
+
+<<<<<<< isaacdev
 ```{r}
-HAPPY <- readRDS("data/HAPPY.rds")
-```
-
-## Data Cleaning 
-
-1. Replacement 
-
-```{R}
+suppressMessages(library(tidyverse))
 HAPPY <- HAPPY %>% mutate(DEGREE = replace(DEGREE, DEGREE %in% c("NA", "DK", "IAP"), NA))
 ```
 
+```{r}
+HAPPY$AGE[HAPPY$AGE %in% "89 OR OLDER"] <- 89
+HAPPY <- HAPPY %>% mutate( DEGREE = factor(DEGREE, 
+                                           levels=c("LT HIGH SCHOOL", 
+                                                            "HIGH SCHOOL", 
+                                                            "JUNIOR COLLEGE",
+                                                            "BACHELOR", "GRADUATE")))
+
+```
+```{r}
+str(HAPPY)
+```
+
+```{r}
+columns_to_factor <- c("YEAR","MARITAL","SEX","HEALTH")
+HAPPY2 <- HAPPY %>%
+            mutate_each_(funs(factor(.)),columns_to_factor)
+```
+```{r}
+str(HAPPY2)
+```
+=======
 2. Variable Type
 
 ```{R}
@@ -43,3 +57,4 @@ HAPPY <- HAPPY %>% mutate( HAPPY = factor(HAPPY, levels=c("NOT TOO HAPPY", "PRET
 ```{r cars}
 summary(cars)
 ```
+>>>>>>> master
